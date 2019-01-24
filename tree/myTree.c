@@ -1,7 +1,8 @@
-#include <stdio.h> 
-#include <dirent.h> 
-#include <string.h>
+#include<stdio.h> 
+#include<dirent.h> 
+#include<string.h>
 #include<stdlib.h>
+#include<unistd.h>
 
 struct node{
 	char path[1000];
@@ -26,7 +27,7 @@ void bfs(char* root)
 		//printf("%s\n",tmp->path);
 		DIR *dr = opendir(tmp->path);
 		if(dr==NULL){
-			printf("Directory not found!\n");
+			//printf("Directory not found!\n");
 			exit(-1);
 		}
 		while ((de = readdir(dr)) != NULL) 
@@ -37,7 +38,7 @@ void bfs(char* root)
 			for(i=0;i<(tmp->depth);i++) printf("----");
 			if((de->d_type)==DT_DIR)
 			{
-				printf("%s\/\n", de->d_name);
+				printf("%s/\n", de->d_name);
 				struct node *tmp1=NULL;
 				tmp1=(struct node*)malloc(sizeof(struct node));				
 				strcpy(tmp1->path,tmp->path);
@@ -75,7 +76,7 @@ void dfs(char* root, int lvl)
 		// folder
 		if((de->d_type)==DT_DIR)
 		{
-			printf("%s\/\n", de->d_name);
+			printf("%s/\n", de->d_name);
 			strcpy(next,root);
 			strcat(strcat(next,"/"),(de->d_name));
 			dfs(next, lvl+1);
@@ -94,14 +95,14 @@ int main(int argc, char** argv[])
 		printf("Usage: myTree [PATH]\n");
 		exit(-1);
 	}
-	
 	printf("DFS implementation:\n");
-	printf("%s\n",(argc==2)? argv[1]:getcwd(0,0));
-	dfs(((argc==2)? argv[1]:getcwd(0,0)),0);
+	//printf("%s\n",(argc==2)? (argv[1]):getcwd(0,0));
+	dfs(((argc==2)? (argv[1]):getcwd(0,0)),0);
 	printf("\n");
 	
 	printf("BFS implementation:\n");
-	printf("%s\n",(argc==2)? argv[1]:getcwd(0,0));
-	bfs(((argc==2)? argv[1]:getcwd(0,0)));
+	//printf("%s\n",(argc==2)? (argv[1]):getcwd(0,0));
+	bfs(((argc==2)? (argv[1]):getcwd(0,0)));
+	
 	return 0; 
 }
