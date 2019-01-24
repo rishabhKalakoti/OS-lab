@@ -12,3 +12,4 @@ if __name__ == "__main__":
 	schFCFS = FCFS(p)
 	for entry in schFCFS.log:
 		print(entry)
+	schFCFS.printInfo()
