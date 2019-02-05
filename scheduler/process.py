@@ -16,12 +16,14 @@ class Process:
 		self.responseTime = -1
 		self.endTime = 0
 		self.burstTime=0
+		self.inProcess = False
 		self.instructions = list()
 		i=4
 		while data[i]!='-1':
 			self.instructions.append([data[i],int(data[i+1])])
 			self.burstTime+=int(data[i+1])
 			i+=2
+		self.remainingTime = self.burstTime
 	def invertPriority(self, other):
 		self.priority, other.priority = other.priority, self.priority
 	def increasePriority(self):
