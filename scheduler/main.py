@@ -4,6 +4,7 @@ from FCFS import *
 from SJF import *
 from priority import *
 from roundRobin import *
+from lottery import *
 if __name__ == "__main__":
 	#input
 	p1 = list()
@@ -11,6 +12,7 @@ if __name__ == "__main__":
 	p3 = list()
 	p4 = list()
 	p5 = list()
+	p6 = list()
 	N = int(input())
 	for i in range(N):
 		x = input()
@@ -19,6 +21,7 @@ if __name__ == "__main__":
 		p3.append(Process(x))
 		p4.append(Process(x))
 		p5.append(Process(x))
+		p6.append(Process(x))
 	print("First Come First Serve")
 	schFCFS = FCFS(p1)
 	"""
@@ -67,5 +70,15 @@ if __name__ == "__main__":
 	print('')
 	"""
 	schRR.printInfo()
+	print("")
+	
+	print("Lottery Scheduling")
+	schLot = Lottery(p6)
+	"""
+	for entry in schLot.log:
+		print(entry)
+	print('')
+	"""
+	schLot.printInfo()
 	print("")
 	
