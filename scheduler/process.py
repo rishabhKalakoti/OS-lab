@@ -11,6 +11,7 @@ class Process:
 		self.priority = int(data[2])
 		self.share=int(data[3])
 		self.state = "start"
+		self.xtimer = -1
 		self.waitingTime = 0
 		self.turnAroundTime = 0
 		self.responseTime = -1
