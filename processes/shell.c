@@ -28,14 +28,40 @@ int main()
 			}
 			else if(f==0)
 			{
-				printf("%s",s);
+				s[strlen(s)-1]=s[strlen(s)];
+				int i=0;
+				for(;i<strlen(s);i++)
+				{
+					if(s[i]==' ')
+					{
+						break;
+					}
+				}
+				char s1[100];
+				char s2[100];
+				memcpy(s1, &s[0], i );
+				s1[i] = '\0';
+				s2[0]=0;
+				i++;
+				if(i<strlen(s))
+				{
+					memcpy(s2, &s[i],strlen(s)-i);
+					s2[strlen(s)-i]='\0';
+				}
+				char *myargs[3];
+				myargs[0] = strdup(s1);
+				if(s2[0]!=0)
+					myargs[1] = strdup(s2);
+				else
+					myargs[1] = NULL;
+				myargs[2] = NULL;
+				execvp(myargs[0], myargs);
 				exit(0);
 			}
 			else if(f>0)
 			{
 				wait(NULL);
 				printf(">> ");
-				//scanf("%[^\n]s",s);
 				fgets(s,100,stdin);
 			}
 		}
