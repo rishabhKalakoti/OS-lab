@@ -10,7 +10,7 @@ int
 main(int argc, char *argv[])
 {
     int rc = fork();
-    close(STDOUT_FILENO); 
+    close(STDOUT_FILENO);
 	//open("./p4.output", O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
 	
     if (rc < 0) {
@@ -25,10 +25,10 @@ main(int argc, char *argv[])
 	*/
 	// now exec "wc"...
         printf("x\n");
-        //char *myargs[3];
-        //myargs[0] = strdup("wc");   // program: "wc" (word count)
-        //myargs[1] = strdup("p4.c"); // argument: file to count
-        //myargs[2] = NULL;           // marks end of array
+        char *myargs[3];
+        myargs[0] = strdup("wc");   // program: "wc" (word count)
+        myargs[1] = strdup("p4.c"); // argument: file to count
+        myargs[2] = NULL;           // marks end of array
         //execvp(myargs[0], myargs);  // runs word count
        	
     } else {

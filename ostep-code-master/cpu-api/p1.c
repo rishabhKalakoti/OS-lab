@@ -15,6 +15,7 @@ main(int argc, char *argv[])
     } else if (rc == 0) {
         // child (new process)
         v+=5;
+        
         printf("Child %d\n",v);
         printf("hello, I am child (pid:%d)\n", (int) getpid());
         printf("Hello\n");
