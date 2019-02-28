@@ -4,15 +4,19 @@
 #include <time.h>
 #include <sys/shm.h> 
 #include <sys/wait.h> 
-#include<pthread.h>
+#include <pthread.h>
 
 int shmVar,shmPtr;
 int *var,*ptr;
-key_t k1=61231,k2=34512;
+key_t k1=61231,k2=34512,k3=23411,k4=657232;
 int n=0;
+int *ticketMem,*chooseMem;
+/*
 int ticket[100];
 int choose[100];
-
+*/
+int **ticket;
+int **choose;
 void func(int num){
 	ptr = (int *)shmat(shmPtr, NULL, 0); 
     if (ptr == (int *)-1 ) {
@@ -58,6 +62,16 @@ int main(){
 		printf("Error.\n");
 		exit(1); 
     }
+    ticketMem = shmget(k3, sizeof(int)*100, IPC_CREAT | 0660); // flag 
+    if ( shmVar < 0 ) {
+		printf("Error.\n");
+		exit(1); 
+    }
+    chooseMem = shmget(k4, sizeof(int)*100, IPC_CREAT | 0660); // flag 
+    if ( shmPtr < 0 ) {
+		printf("Error.\n");
+		exit(1); 
+    }
     ptr = (int *)shmat(shmPtr, NULL, 0); 
     if (ptr == (int *)-1 ) {
         printf("Error.\n");
@@ -65,6 +79,16 @@ int main(){
     } 
     var = (int *)shmat(shmVar, NULL, 0); 
     if (var == (int *)-1 ) {
+        printf("Error.\n");
+        exit(-1); 
+    }
+    ticket = (int **)shmat(shmPtr, NULL, 0); 
+    if (ptr == (int **)-1 ) {
+        printf("Error.\n");
+        exit(-1); 
+    } 
+    choose = (int **)shmat(shmVar, NULL, 0); 
+    if (var == (int **)-1 ) {
         printf("Error.\n");
         exit(-1); 
     } 
