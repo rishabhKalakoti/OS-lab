@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define MAX_PAGES 10
+#define MAX_PAGES 5
 int main()
 {
 	// lru
