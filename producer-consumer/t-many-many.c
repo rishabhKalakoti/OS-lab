@@ -12,7 +12,7 @@ pthread_t consumers[5];
 sem_t mutex,empty,full;
 
 int ind=-1,prod = 5,con = 5,buf_len = 4;
-int buf[4];
+int buf[buf_len];
 
 int produce(pthread_t self){
 	int i = 0;
@@ -30,10 +30,6 @@ void consume(int p,pthread_t self){
 	while(!pthread_equal(consumers[i],self) && i < con){
 		i++;
 	}
-
-	//printf("Buffer:");
-	/*for(i=0;i<=ind;++i)
-		printf("%d ",*(buf+i));*/
 	printf("Consumer [%d] consumed %d\n",i+1,p);
 	
 }
