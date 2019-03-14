@@ -12,7 +12,7 @@ pthread_t consumers[5];
 sem_t mutex,empty,full;
 
 int ind=-1,prod = 5,con = 5,buf_len = 4;
-int buf[buf_len];
+int buf[4];
 
 int produce(pthread_t self){
 	int i = 0;
