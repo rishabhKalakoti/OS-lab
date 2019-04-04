@@ -30,10 +30,6 @@ void consume(int p,pthread_t self){
 	while(!pthread_equal(consumers[i],self) && i < con){
 		i++;
 	}
-
-	//printf("Buffer:");
-	/*for(i=0;i<=ind;++i)
-		printf("%d ",*(buf+i));*/
 	printf("Consumer [%d] consumed %d\n",i+1,p);
 	
 }
