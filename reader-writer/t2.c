@@ -10,7 +10,7 @@ int data=0;
 void* writer(void* num){
 		int k = (int)num;
 		sem_wait(&wlock);
-		wcount++;
+		wc++;
 		if(wc == 1){
 			sem_wait(&readTry);
 		}
@@ -24,12 +24,11 @@ void* writer(void* num){
 		sem_post(&resource);
 		
 		sem_wait(&wlock);
-		wcount--;
+		wc--;
 		if(wc==0){
 			sem_post(&readTry);
 		}
 		sem_post(&wlock);
-		
 	
 }
 void* reader(void* num){
